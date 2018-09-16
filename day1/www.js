@@ -1,8 +1,10 @@
-const express = require('express');
-const app = express();
-app.get('/', function (req, res) {
-  res.send('Hello World!');
+const http = require('http');
+
+const server = http.createServer( (req, res) => {
+  res.writeHead(200,{'Content-Type':'text/html'});
+  res.end('Hello World!');
 });
-app.listen(3000, function () {
-  console.log('Example app listening on port 3000!');
+
+server.listen(8080, () => {
+  console.log('Server is running on port 8080!');
 });
