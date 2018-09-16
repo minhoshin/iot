@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Rasberry pi led control</title>
+</head>
+<body>
+  <button onclick="ledOn()">LED ON</button><br />
+  <button onclick="ledOff()">LED OFF</button>
+  <script>
+  function ledOn() {
+    console.log('led on');
+    alert('led on');
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          console.log('led on success ' + Date());
+        }
+    };
+    xhttp.open("GET", "http://192.168.1.21:8080/ledon", true);
+    xhttp.send();
+  };
+  function ledOff() {
+    alert('led off');
+    console.log('led off');
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          console.log('led off success ' + Date());
+        }
+    };
+    xhttp.open("GET", "http://192.168.1.21:8080/ledoff", true);
+    xhttp.send();
+  };
+  </script>
+</body>
+</html>
+
