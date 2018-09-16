@@ -1,7 +1,7 @@
 let num = 10;
 let doubleNum = 3.14;
 let singleChar = 'a';
-let longChar = 'rasberry is so fun';
+let longChar = 'rasberry pi is so fun';
 
 console.log(typeof num);
 console.log(typeof doubleNum);

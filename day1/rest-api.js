@@ -6,10 +6,12 @@ app.get('/', (req, res) => {
 });
 
 app.get('/ledon', (req, res) => {
+	console.log('led on');
 	res.send('led on');
 });
 
 app.get('/ledoff', (req, res) => {
+	console.log('led off');
 	res.send('led off');
 });
 
