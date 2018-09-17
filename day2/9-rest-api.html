@@ -9,7 +9,6 @@
   <script>
   function ledOn() {
     console.log('led on');
-    alert('led on');
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
@@ -20,7 +19,6 @@
     xhttp.send();
   };
   function ledOff() {
-    alert('led off');
     console.log('led off');
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {

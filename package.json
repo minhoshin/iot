@@ -12,6 +12,9 @@
   "dependencies": {
     "cors": "^2.8.4",
     "express": "^4.16.3",
+    "microtime": "^2.1.8",
+    "sleep": "^5.2.3",
+    "wiring-pi": "^2.2.1",
     "wiringpi-node": "^2.4.4"
   }
 }
