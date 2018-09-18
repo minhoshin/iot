@@ -3,33 +3,34 @@ var app = require('express')();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 
-server.listen(8080, function(){
-  console.log('Server is running');
+server.listen(8080, () => {
+  console.log('Server is running, port 8080');
 });
 
-app.get('/', function(request, response){
-  response.sendFile(__dirname + '/11-socketio.html');
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + '/13-socketio.html');
 });
 
-io.on('connection', function(socket){
-  console.log('connect');
+app.get('/parking/in', (req, res) => {
+    io.emit('event_to_all', '주차장에 진입 하였습니다.');
+    console.log('주차장에 진입 하였습니다.');
+    res.send('success');
+});
 
-  socket.on('event1', function(){
-    console.log('receive event(1)');  
+io.on('connection', (socket) => {
+
+  console.log('에너지 관제 통합 시스템에 접속 하였습니다.');
+
+  socket.on('parkLightOn', (msg) => {
+    console.log('조명 제어 이벤트: ', msg);
+    io.emit('event_to_all', '주차장 조명이 켜졌습니다.');
+    // 조명 제어
+  });
+
+  socket.on('parkLightOff', (msg) => {
+    console.log('조명 제어 이벤트: ', msg);
+    io.emit('event_to_all', '주차장 조명이 꺼졌습니다.');
+    // 조명 제어
   });
   
-  socket.on('event2', function(data){
-    console.log('receive event(2): ', data);
-
-    exec('date +%H:%M:%S', function(error, stdout, stderr){
-      socket.emit('event3', stdout);
-    });
-  });
 });
-
-
-var count = 0;
-setInterval(function(){
-  count++;
-  io.emit('event_to_all', count);
-}, 1000);

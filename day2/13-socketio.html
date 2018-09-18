@@ -4,23 +4,28 @@
 <script src='/socket.io/socket.io.js'></script>
 <script>
 $(function(){
+  
   var socket = io();
-  socket.emit('event1');
-  $('#test_button').click(function(){
-    socket.emit('event2', 'Hello from HTML');
+
+  $('#park_light_on').click(function(){
+    socket.emit('parkLightOn', '주차장 조명 켜기');
   });
-  socket.on('event3', function(data){
-    $('#msg').text(data);
+
+  $('#park_light_off').click(function(){
+    socket.emit('parkLightOff', '주차장 조명 끄기');
   });
-  socket.on('event_to_all', function(data){
-    $('#msg_to_all').text(data);
+
+  socket.on('event_to_all', function(msg){
+    console.log(msg);
+    $('#msg_to_all').append('<div>' + msg + '</div>');
   });
+
 });
 </script>
 </head>
 <body>
-  <button id='test_button'>test_button</button><br>
-  <span id='msg'></span><br>
-  <span id='msg_to_all'></span>
+  <button id='park_light_on'>주차장 조명 켜기</button><br>
+  <button id='park_light_off'>주차장 조명 끄기</button><br>
+  <div id='msg_to_all'></div>
 </body>
 </html>
