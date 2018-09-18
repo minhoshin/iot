@@ -8,7 +8,7 @@ server.listen(8080, () => {
 });
 
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/13-socketio.html');
+    res.sendFile(__dirname + '/manage-system.html');
 });
 
 app.get('/parking/in', (req, res) => {
